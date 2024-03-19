@@ -71,6 +71,7 @@
       lsof
       mkpasswd
       neovim
+      neovim
       parted
       pciutils
       python311
@@ -80,6 +81,7 @@
       sdparm
       shellcheck
       shfmt
+      silver-searcher
       smartmontools
       time
       tmux
@@ -87,8 +89,8 @@
       usbutils
       wget
       which
+      xsel
       zip
-      zstd
     ];
     variables = {
       EDITOR = "nvim";
@@ -101,17 +103,7 @@
   users = {
     defaultUserShell = pkgs.bashInteractive;
     mutableUsers = false;
-    users = {
-      root = {
-        password = "rescue";
-        openssh.authorizedKeys.keyFiles = [
-          (builtins.fetchurl {
-            url = "https://github.com/n8henrie.keys";
-            sha256 = "1bhfxj9jlzqfvkz1j7bmqlzskcgali36ans7ajjgn0zc1998kqs9";
-          })
-        ];
-      };
-    };
+    users.root.password = "rescue";
   };
 
   nixpkgs.config.allowUnfree = true;
